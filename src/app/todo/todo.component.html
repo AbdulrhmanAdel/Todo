@@ -1,0 +1,49 @@
+<div class="row justify-content-center md-3">
+    <div class="col-md-4 text-center">
+        <h1>TODOS</h1>
+        <p class="text-info">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" class="form-inline">
+            <div class="col-md-10 form-group">
+                <input type="text" placeholder="todoText" name="todotext" class="form-control-plaintext drop-shadow"
+                    required    [(ngModel)]="todoValue" #todo='ngModel'
+                [ngClass]="{'border-danger': f.submitted && todo.invalid}">
+            </div>
+            <button type="submit" class="btn btn-outline-primary col-md-2 btn-todo btn-block">{{dataStatus}}</button>
+            <div class="text-danger test" *ngIf="f.submitted && todo.invalid && todo.errors.required">todo is required</div>
+        </form>
+    </div>
+</div>
+<div class="row todo-list justify-content-center ">
+    <div class="col-md-6 ">
+        <div class="card" *ngFor="let todo of todos" >
+            <div class="card-body">
+                <div class="clearfix">
+                    <div class="float-left text-secondary">
+                        <i class="fa fa-circle text-danger" *ngIf="!todo.data.isCompleted"></i>
+                        <i class="fa fa-check text-success" *ngIf="todo.data.isCompleted"></i>
+                        {{todo.data.todo}}
+                        <hr *ngIf="todo.data.isCompleted">
+                    </div>
+                    <div class="float-right">
+                        <i class="fa fa-check-circle text-success" *ngIf="!todo.data.isCompleted"  (click)="complete(todo.id)"></i>
+                        <i class="fa fa-times-circle text-danger" *ngIf="todo.data.isCompleted" (click)="unComplete(todo.id)"></i>
+                        <div class="todo-tools">
+                            <small><i class="fa fa-pencil-alt text-warning" (click)="onEdit(todo.id,todo.data.todo)"></i></small>
+                            <small><i class="fa fa-trash text-danger" (click)="onDelete(todo.id)"></i></small>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

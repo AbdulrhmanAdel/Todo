@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+.drop-shadow{
+    -webkit-box-shadow: 0px 0px 33px -10px rgba(4,114,254,1);
+    -moz-box-shadow: 0px 0px 33px -10px rgba(4,114,254,1);
+    box-shadow: 0px 0px 33px -10px rgba(4,114,254,1);
+}
+input{
+    background-color: #fefefe;
+    height: 60px;
+    padding-left: 30px !important;
+}
+.btn-todo{
+    height: 60px !important;
+    
+}
+.border-danger{
+    border: 1px solid red !important;
+    
+}
+input:focus{
+    outline-width: 0px; ;
+}

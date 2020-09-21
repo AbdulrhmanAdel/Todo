@@ -1,0 +1,53 @@
+<div class="row justify-content-center md-3">
+    <div class="col-md-4 text-center">
+        <h1>TODO CATAGORY</h1>
+        <p class="text-info">
+            Add and edit your catagories.
+        </p>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" class="form-group">
+            <div class="col-md-10 form-group">
+                <input type="text" placeholder="Add New Catagories Here" name="catagoryName" required class="form-control-plaintext
+                  drop-shadow "  
+                  ngModel #catagory ="ngModel"  [ngClass]="{'border-danger': f.submitted && catagory.invalid}" [(ngModel)]="catagoryName ">
+                  <div class="text-danger co-md-3 vaild-message"
+            *ngIf='f.submitted && catagory.invalid && catagory.errors.required'>catagory is required</div>
+
+                  <input type="text" placeholder="Add body" name="body"  class="form-control-plaintext
+                  drop-shadow add-margin"  
+                   #body ="ngModel"  ngModel >
+            </div>
+            <button type="submit" class="btn btn-outline-primary col-md-2 btn-todo btn-block">{{dataStatus}}</button>
+           
+
+        </form>
+    </div>
+</div>
+<div class="row catagory-list">
+    <div class="col-md-3" *ngFor="let catagory of catagories" >
+        <div class="card drop-shadow" [style.border-left-color]="catagory.data.color" >
+            <div class="card-body">
+                <div class="clearfix">
+                    <div class="float-left">
+                        <div class="badge badge-primary">CATAGORY</div>
+                    </div>  
+                    <div class="float-right cat-tools">
+                        <small><i class="fa fa-pencil-alt text-success" (click)="onEdit(catagory.data.catagory,catagory.id)"></i></small>
+                        <small><i class="fa fa-trash text-danger" (click)="onDelete(catagory.id)"></i></small>
+                    </div>
+                </div>
+                <div class="tade-content" [routerLink]="['/todo/',catagory.id]" id="div-catagory" >
+                    <h3 [style.color]="catagory.data.color">{{catagory.data.catagory}}</h3> 
+                    <small class="text-secondary">{{catagory.data.body}}</small>
+                    
+                </div>
+                <div class="badge badge-danger">{{catagory.data.todoCount}} -todos</div>
+            </div>
+        </div>
+    </div>
+</div>
